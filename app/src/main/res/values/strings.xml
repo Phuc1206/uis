@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Time management</string>
+    <string name="back"><![CDATA[<]]></string>
+    <string name="forward"><![CDATA[>]]></string>
+    <string name="welcome_text">WELCOME TO TOMELY</string>
+    <string name="welcome_text1">Solutions for a smart task management</string>
+    <string name="getstarted_signin">Sign In</string>
+    <string name="getstarted_signup">Sign Up</string>
+    <string name="welcome_text2">By continuing with the services above, you agree to Tomely Terms of Service and Privacy Policy</string>
+
+</resources>
