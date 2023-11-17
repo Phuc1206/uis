@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TimeManagement"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ChartActivity"
+            android:exported="false" />
         <activity
             android:name=".TaskEditActivity"
             android:exported="false" />
@@ -45,9 +48,11 @@
         <activity
             android:name=".DetailTaskActivity"
             android:exported="false" />
-        <receiver android:name=".AlarmReceiver"
+
+        <receiver
+            android:name=".AlarmReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>
