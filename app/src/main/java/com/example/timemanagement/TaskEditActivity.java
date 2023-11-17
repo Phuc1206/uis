@@ -28,7 +28,7 @@ import java.util.Date;
 
 
 public class TaskEditActivity extends AppCompatActivity {
-    private LocalTime time;
+    private LocalTime time,time_end;
     private EditText edtDateStart,edtTimeStart,edtTimeEnd,edtTitle,edtdes;
     private Button btnSave;
     LinearLayout layoutColor;
@@ -48,6 +48,7 @@ public class TaskEditActivity extends AppCompatActivity {
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
         time = LocalTime.of(hour,minute);
+        time_end =LocalTime.of(hour,minute);
         edtDateStart.setInputType(InputType.TYPE_NULL);
         edtTimeStart.setInputType(InputType.TYPE_NULL);
         edtTimeEnd.setInputType(InputType.TYPE_NULL);
@@ -120,6 +121,20 @@ public class TaskEditActivity extends AppCompatActivity {
 
             }
         });
+        edtTimeEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(TaskEditActivity.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        time_end = LocalTime.of(hourOfDay, minute);
+                        edtTimeEnd.setText(CalendarUtils.formattedTime(time_end));
+                    }
+                }, time_end.getHour(), time_end.getMinute(), DateFormat.is24HourFormat(TaskEditActivity.this));
+                timePickerDialog.show();
+
+            }
+        });
         edtDateStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +170,7 @@ public class TaskEditActivity extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(CalendarUtils.selectedDate.getYear(), CalendarUtils.selectedDate.getMonthValue() - 1, CalendarUtils.selectedDate.getDayOfMonth(), time.getHour(), time.getMinute(), 0);
                 int id = Task.tasksList.size();
-                Task newTask = new Task(id,taskTitle,taskDes,taskColor, CalendarUtils.selectedDate, time);
+                Task newTask = new Task(id,taskTitle,taskDes,taskColor, CalendarUtils.selectedDate, time,time_end);
                 Task.tasksList.add(newTask);
                 sqLiteManager.addNoteToDatabase(newTask);
                 Intent intent = new Intent(TaskEditActivity.this,AlarmReceiver.class);

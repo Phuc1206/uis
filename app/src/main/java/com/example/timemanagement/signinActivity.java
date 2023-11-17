@@ -84,7 +84,7 @@ public class signinActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(signinActivity.this,"You login successful", Toast.LENGTH_SHORT).show();
-                    Intent intent =new Intent(signinActivity.this, MainActivity.class);
+                    Intent intent =new Intent(signinActivity.this, WeekViewActivity.class);
                     intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }else {

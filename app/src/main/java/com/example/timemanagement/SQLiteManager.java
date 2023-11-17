@@ -31,6 +31,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
     private static final String DELETE_FIELD = "deleted";
     private static final String DATE_FIELD = "date";
     private static final String TIME_FIELD = "time";
+    private static final String TIME_END_FIELD = "time_end";
     @SuppressLint("SimpleDateFormat")
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy hh:mm");
     public SQLiteManager( Context context) {
@@ -65,6 +66,8 @@ public class SQLiteManager extends SQLiteOpenHelper {
                 .append(DATE_FIELD)
                 .append(" TEXT, ")
                 .append(TIME_FIELD)
+                .append(" TEXT, ")
+                .append(TIME_END_FIELD)
                 .append(" TEXT)");
         sqLiteDatabase.execSQL(sql.toString());
     }
@@ -92,6 +95,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
         contentValues.put(DELETE_FIELD, getStringFromDate(task.getDeleted()));
         contentValues.put(DATE_FIELD, task.getDate().toString());
         contentValues.put(TIME_FIELD, task.getTime().toString());
+        contentValues.put(TIME_END_FIELD, task.getTime_end().toString());
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
 
@@ -113,7 +117,8 @@ public class SQLiteManager extends SQLiteOpenHelper {
                     Date deleted = getDateFromString(stringDeleted);
                     LocalDate date = LocalDate.parse(result.getString(6));
                     LocalTime time = LocalTime.parse(result.getString(7));
-                    Task task = new Task(id,title,desc,color,deleted,date,time);
+                    LocalTime time_end = LocalTime.parse(result.getString(8));
+                    Task task = new Task(id,title,desc,color,deleted,date,time,time_end);
                     Task.tasksList.add(task);
                 }
             }

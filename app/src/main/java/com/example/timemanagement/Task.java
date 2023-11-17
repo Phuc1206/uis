@@ -47,7 +47,15 @@ public class Task {
     }
 
     private LocalDate date;
-    private LocalTime time;
+    private LocalTime time,time_end;
+
+    public LocalTime getTime_end() {
+        return time_end;
+    }
+
+    public void setTime_end(LocalTime time_end) {
+        this.time_end = time_end;
+    }
 
     public int getId() {
         return id;
@@ -74,7 +82,7 @@ public class Task {
     }
 
 
-    public Task(int id, String title, String des,String color, Date deleted, LocalDate date, LocalTime time) {
+    public Task(int id, String title, String des,String color, Date deleted, LocalDate date, LocalTime time,LocalTime time_end) {
         this.id = id;
         this.title = title;
         this.des = des;
@@ -82,9 +90,10 @@ public class Task {
         this.deleted = deleted;
         this.date = date;
         this.time = time;
+        this.time_end = time_end;
     }
 
-    public Task(int id, String title, String des,String color, LocalDate date, LocalTime time)
+    public Task(int id, String title, String des,String color, LocalDate date, LocalTime time,LocalTime time_end)
     {
         this.id = id;
         this.title = title;
@@ -92,6 +101,7 @@ public class Task {
         this.color = color;
         this.date = date;
         this.time = time;
+        this.time_end = time_end;
         deleted = null;
 
     }

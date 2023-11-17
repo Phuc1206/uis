@@ -144,7 +144,6 @@
         android:background="@android:color/transparent"
         android:onClick="newTaskAction"
         android:drawableLeft="@drawable/btnnewtask" />
-
 </LinearLayout>
 
 

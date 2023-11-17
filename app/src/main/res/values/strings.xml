@@ -7,5 +7,7 @@
     <string name="getstarted_signin">Sign In</string>
     <string name="getstarted_signup">Sign Up</string>
     <string name="welcome_text2">By continuing with the services above, you agree to Tomely Terms of Service and Privacy Policy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -19,7 +19,7 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class DetailTaskActivity extends AppCompatActivity {
-    TextView tvTitle,tvDate,tvTime;
+    TextView tvTitle,tvDate,tvTime,tvTimeEnd;
     Button btnchange;
     Button btnSave,btndel;
     Task selectedTask;
@@ -76,6 +76,7 @@ public class DetailTaskActivity extends AppCompatActivity {
             tvTitle.setText(selectedTask.getTitle());
             tvTime.setText(selectedTask.getTime().toString());
             tvDate.setText(selectedTask.getDate().toString());
+            tvTimeEnd.setText(selectedTask.getTime_end().toString());
         }
     }
 
@@ -87,5 +88,6 @@ public class DetailTaskActivity extends AppCompatActivity {
         btndel =findViewById(R.id.btnDeleteTask);
         btnSave = findViewById(R.id.btnComplete);
         edtTitle = findViewById(R.id.edtDetailTitle);
+        tvTimeEnd = findViewById(R.id.tvDetailTimeEmd);
     }
 }

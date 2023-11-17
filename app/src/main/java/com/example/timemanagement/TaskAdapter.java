@@ -36,11 +36,19 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         tvTitle.setText(task.getTitle().toString());
         tvdes.setText(task.getDes().toString());
         tvtime.setText(task.getTime().toString());
-
-        taskLayout.setBackgroundColor(Color.parseColor(task.getColor()));
+        if (isOvertime(task)) {
+            // Change the color of your view items
+            taskLayout.setBackgroundColor(Color.RED);
+        } else {
+            taskLayout.setBackgroundColor(Color.parseColor(task.getColor()));
+        }
 
 
 
         return convertView;
+    }
+
+    private boolean isOvertime(Task task) {
+        return task.getTime().isAfter(task.getTime_end());
     }
 }
