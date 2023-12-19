@@ -7,7 +7,13 @@
     <string name="getstarted_signin">Sign In</string>
     <string name="getstarted_signup">Sign Up</string>
     <string name="welcome_text2">By continuing with the services above, you agree to Tomely Terms of Service and Privacy Policy</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_timer">Timer</string>
+    <string name="start_pomodoro">START POMODORO</string>
+    <string name="title_breaks">Number of breaks:</string>
+    <string name="title_time">Time (minute):</string>
+    <string name="title_dialog">Set Time</string>
+    <string name="action_start">START</string>
+    <string name="channel_name_service">Chanel Service</string>
+    <string name="channel_description_service">This is channel service</string>
 
 </resources>

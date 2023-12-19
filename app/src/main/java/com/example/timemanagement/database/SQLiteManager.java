@@ -1,4 +1,4 @@
-package com.example.timemanagement;
+package com.example.timemanagement.database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -6,8 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,6 +30,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
     private static final String DATE_FIELD = "date";
     private static final String TIME_FIELD = "time";
     private static final String TIME_END_FIELD = "time_end";
+    private static final String CATEGORY_FIELD = "category";
     @SuppressLint("SimpleDateFormat")
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy hh:mm");
     public SQLiteManager( Context context) {
@@ -68,7 +67,9 @@ public class SQLiteManager extends SQLiteOpenHelper {
                 .append(TIME_FIELD)
                 .append(" TEXT, ")
                 .append(TIME_END_FIELD)
-                .append(" TEXT)");
+                .append(" TEXT,")
+                .append(CATEGORY_FIELD)
+                .append(" TEXT) ");
         sqLiteDatabase.execSQL(sql.toString());
     }
 
@@ -96,6 +97,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
         contentValues.put(DATE_FIELD, task.getDate().toString());
         contentValues.put(TIME_FIELD, task.getTime().toString());
         contentValues.put(TIME_END_FIELD, task.getTime_end().toString());
+        contentValues.put(CATEGORY_FIELD, task.getCategory().toString());
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
 
@@ -118,7 +120,8 @@ public class SQLiteManager extends SQLiteOpenHelper {
                     LocalDate date = LocalDate.parse(result.getString(6));
                     LocalTime time = LocalTime.parse(result.getString(7));
                     LocalTime time_end = LocalTime.parse(result.getString(8));
-                    Task task = new Task(id,title,desc,color,deleted,date,time,time_end);
+                    String category = result.getString(9);
+                    Task task = new Task(id,title,desc,color,deleted,date,time,time_end,category);
                     Task.tasksList.add(task);
                 }
             }

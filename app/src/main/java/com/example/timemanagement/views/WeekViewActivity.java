@@ -1,19 +1,28 @@
-package com.example.timemanagement;
+package com.example.timemanagement.views;
 
-import static com.example.timemanagement.CalendarUtils.daysInWeekArray;
-import static com.example.timemanagement.CalendarUtils.monthYearFromDate;
+import static com.example.timemanagement.adapter.CalendarUtils.daysInWeekArray;
+import static com.example.timemanagement.adapter.CalendarUtils.monthYearFromDate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.timemanagement.adapter.CalendarAdapter;
+import com.example.timemanagement.adapter.CalendarUtils;
+import com.example.timemanagement.R;
+import com.example.timemanagement.database.SQLiteManager;
+import com.example.timemanagement.database.Task;
+import com.example.timemanagement.adapter.TaskAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,6 +45,26 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         setWeekView();
         loadFromDBToMemory();
         setEvent();
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setBackground(null);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+                    int itemId = item.getItemId();
+
+                    if (itemId == R.id.home) {
+                        return true;
+
+                    } else if (itemId == R.id.thongke) {
+                        startActivity(new Intent(WeekViewActivity.this, ChartActivity.class));
+                        finish();
+                    } else if(itemId == R.id.pomodoro){
+                        startActivity(new Intent(WeekViewActivity.this, StartPodomoroActivity.class));
+                        finish();
+                    }
+                    return true;
+                });
+        NotificationManager manager= (NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+        manager.cancelAll();
+
     }
 
     private void setEvent() {
@@ -43,7 +72,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Task selectedTask = (Task) taskListView.getItemAtPosition(position);
-                Intent editTaskIntent = new Intent(getApplicationContext(),DetailTaskActivity.class);
+                Intent editTaskIntent = new Intent(getApplicationContext(), DetailTaskActivity.class);
                 editTaskIntent.putExtra(Task.TASK_EDIT_EXTRA, selectedTask.getId());
                 startActivity(editTaskIntent);
             }
@@ -97,6 +126,12 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     protected void onResume()
     {
         super.onResume();
+        setTaskAdpater();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         setTaskAdpater();
     }
 

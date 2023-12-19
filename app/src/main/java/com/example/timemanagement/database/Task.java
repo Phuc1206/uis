@@ -1,10 +1,11 @@
-package com.example.timemanagement;
+package com.example.timemanagement.database;
 
-import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 public class Task {
     public static ArrayList<Task> tasksList = new ArrayList<>();
@@ -25,6 +26,23 @@ public class Task {
 
         return tasks;
     }
+    public static ArrayList<Task> getTasksForWeek(){
+        LocalDate today =LocalDate.now();
+        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
+        LocalDate endOfWeek = today.with(DayOfWeek.SUNDAY);
+        ArrayList<Task> tasksThisWeek = tasksList.stream().filter(task -> !task.getDate().isBefore(startOfWeek) && !task.getDate().isAfter(endOfWeek) && task.getDeleted()==null)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return tasksThisWeek;
+    }
+    public static ArrayList<Task> getTasksForMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate startOfMonth = today.withDayOfMonth(1);
+        LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+        ArrayList<Task> tasksThisMonth = tasksList.stream()
+                .filter(task -> !task.getDate().isBefore(startOfMonth) && !task.getDate().isAfter(endOfMonth) && task.getDeleted()==null)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return tasksThisMonth;
+    }
 
     public String getColor() {
         return color;
@@ -36,10 +54,18 @@ public class Task {
 
     private int id;
 
-    private String title,des,color;
+    private String title,des,color,category;
     private Date deleted;
     public String getDes() {
         return des;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setDes(String des) {
@@ -82,7 +108,7 @@ public class Task {
     }
 
 
-    public Task(int id, String title, String des,String color, Date deleted, LocalDate date, LocalTime time,LocalTime time_end) {
+    public Task(int id, String title, String des,String color, Date deleted, LocalDate date, LocalTime time,LocalTime time_end, String category) {
         this.id = id;
         this.title = title;
         this.des = des;
@@ -91,9 +117,10 @@ public class Task {
         this.date = date;
         this.time = time;
         this.time_end = time_end;
+        this.category = category;
     }
 
-    public Task(int id, String title, String des,String color, LocalDate date, LocalTime time,LocalTime time_end)
+    public Task(int id, String title, String des,String color, LocalDate date, LocalTime time,LocalTime time_end,String category)
     {
         this.id = id;
         this.title = title;
@@ -102,6 +129,7 @@ public class Task {
         this.date = date;
         this.time = time;
         this.time_end = time_end;
+        this.category = category;
         deleted = null;
 
     }

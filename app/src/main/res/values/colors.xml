@@ -12,4 +12,10 @@
     <color name="lavender">#8692f7</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name= "yellow">#FFCD00</color>
+    <color name="green">#90D3CB</color>
+    <color name="xanh1">#C0EEE4</color>
+    <color name="xanh2">#B0E5DC</color>
+    <color name="xanh3">#A0DCD3</color>
+    <color name="xanh4">#90D3CB</color>
 </resources>

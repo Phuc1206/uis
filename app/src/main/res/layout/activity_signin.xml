@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background"
     android:padding="16dp"
-    tools:context=".signinActivity">
+    tools:context=".user.signinActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

@@ -1,8 +1,7 @@
-package com.example.timemanagement;
+package com.example.timemanagement.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
-import java.util.ArrayList;
+import com.example.timemanagement.R;
+import com.example.timemanagement.database.Task;
+
 import java.util.List;
 
 public class TaskAdapter extends ArrayAdapter<Task> {
@@ -29,7 +31,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         Task task = getItem(position);
         if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.task_cell, parent, false);
-        LinearLayout taskLayout = convertView.findViewById(R.id.layoutTask);
+        CardView cardView = convertView.findViewById(R.id.layoutTask);
         TextView tvTitle = convertView.findViewById(R.id.tvtitle);
         TextView tvdes = convertView.findViewById(R.id.tvdes);
         TextView tvtime = convertView.findViewById(R.id.tvtime);
@@ -38,12 +40,10 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         tvtime.setText(task.getTime().toString());
         if (isOvertime(task)) {
             // Change the color of your view items
-            taskLayout.setBackgroundColor(Color.RED);
+            cardView.setBackgroundColor(Color.RED);
         } else {
-            taskLayout.setBackgroundColor(Color.parseColor(task.getColor()));
+            cardView.setBackgroundColor(Color.parseColor(task.getColor()));
         }
-
-
 
         return convertView;
     }

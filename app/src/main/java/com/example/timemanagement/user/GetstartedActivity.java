@@ -1,4 +1,4 @@
-package com.example.timemanagement;
+package com.example.timemanagement.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.timemanagement.R;
 
 public class GetstartedActivity extends AppCompatActivity {
     Button btnsignin,btnsignup;
@@ -18,14 +20,14 @@ public class GetstartedActivity extends AppCompatActivity {
        btnsignin.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent = new Intent(GetstartedActivity.this,signinActivity.class);
+               Intent intent = new Intent(GetstartedActivity.this, signinActivity.class);
                startActivity(intent);
            }
        });
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GetstartedActivity.this,signupActivity.class);
+                Intent intent = new Intent(GetstartedActivity.this, signupActivity.class);
                 startActivity(intent);
             }
         });

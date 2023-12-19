@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,28 +17,29 @@
         android:theme="@style/Theme.TimeManagement"
         tools:targetApi="31">
         <activity
-            android:name=".ChartActivity"
+            android:name=".views.ChartActivity"
             android:exported="false" />
         <activity
-            android:name=".TaskEditActivity"
+            android:name=".views.TaskEditActivity"
             android:exported="false" />
         <activity
-            android:name=".forgetpasswordActivity"
+            android:name=".user.forgetpasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".GetstartedActivity"
+            android:name=".user.GetstartedActivity"
             android:exported="false" />
         <activity
-            android:name=".signupActivity"
+            android:name=".user.signupActivity"
             android:exported="false" />
         <activity
-            android:name=".signinActivity"
+            android:name=".user.signinActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".WeekViewActivity"
+            android:name=".views.WeekViewActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,13 +48,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailTaskActivity"
+            android:name=".views.DetailTaskActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".views.Timer"
+            android:exported="false" />
+        <activity
+            android:name=".views.StartPodomoroActivity"
+            android:parentActivityName=".views.WeekViewActivity" />
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".notification.NotificationReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
+        <receiver
+            android:name=".notification.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <service android:name=".notification.MyService" />
     </application>
 
 </manifest>

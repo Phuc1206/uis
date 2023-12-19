@@ -1,8 +1,10 @@
-package com.example.timemanagement;
+package com.example.timemanagement.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.timemanagement.R;
 
 public class forgetpasswordActivity extends AppCompatActivity {
 

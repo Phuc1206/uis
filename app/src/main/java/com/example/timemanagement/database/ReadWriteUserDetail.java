@@ -1,4 +1,4 @@
-package com.example.timemanagement;
+package com.example.timemanagement.database;
 
 public class ReadWriteUserDetail {
     public String Email,Number;

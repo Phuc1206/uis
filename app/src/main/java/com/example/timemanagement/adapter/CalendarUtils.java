@@ -1,4 +1,4 @@
-package com.example.timemanagement;
+package com.example.timemanagement.adapter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

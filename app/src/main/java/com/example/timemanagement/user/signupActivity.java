@@ -1,4 +1,4 @@
-package com.example.timemanagement;
+package com.example.timemanagement.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.timemanagement.R;
+import com.example.timemanagement.database.ReadWriteUserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -88,7 +90,7 @@ public class signupActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 firebaseUser.sendEmailVerification();
                                 Toast.makeText(signupActivity.this,"User registered succcessful, please verify your email.",Toast.LENGTH_SHORT).show();
-                                Intent intent =new Intent(signupActivity.this,signinActivity.class);
+                                Intent intent =new Intent(signupActivity.this, signinActivity.class);
                                 intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TOP|intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
